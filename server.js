@@ -1,8 +1,18 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
-const { port } = require("./config");
-// mongodb+srv://ahmetayyildiz:<password>@cluster0.pnpfg.mongodb.net/?retryWrites=true&w=majority
+const { port, dbURI } = require("./config");
+
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((conn) => {
+    console.log(conn.connections);
+    console.log("DB connection successful");
+  });
 
 app.listen(port, () => {
   console.log(`Listening port ${port}`);
