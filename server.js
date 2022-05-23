@@ -1,7 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const {
+  getDonuts,
+  createNewDonut,
+  updateDonut,
+} = require("./controllers/DonutController");
 
 const app = express();
+app.use(express.json());
+
 const { port, dbURI } = require("./config");
 
 mongoose
@@ -17,6 +24,9 @@ mongoose
 app.listen(port, () => {
   console.log(`Listening port ${port}`);
 });
+
+app.route("/donuts").get(getDonuts).post(createNewDonut);
+app.route("/donuts/:id").patch(updateDonut);
 
 app.get("/", (req, res) => {
   res.send("Hello from backend side");
