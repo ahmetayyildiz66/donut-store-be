@@ -1,5 +1,5 @@
 const getDonuts = (req, res) => {
-  res.send("getDonuts");
+  res.send("getDonuts nodemon");
 };
 
 const createNewDonut = (req, res) => {
